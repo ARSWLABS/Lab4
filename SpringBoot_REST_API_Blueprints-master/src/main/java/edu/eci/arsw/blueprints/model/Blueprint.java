@@ -1,4 +1,3 @@
-
 package edu.eci.arsw.blueprints.model;
 
 import java.util.ArrayList;
@@ -6,86 +5,57 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-
 public class Blueprint {
 
-    private String author=null;
-    
-    private List<Point> points=null;
-    
-    private String name=null;
-            
-    public Blueprint(String author,String name,Point[] pnts){
-        this.author=author;
-        this.name=name;
-        points=Arrays.asList(pnts);
-    }
-         
-    public Blueprint(String author, String name){
-        this.name=name;
-        points=new ArrayList<>();
+    private String author;
+    private String name;
+    private List<Point> points;
+
+    public Blueprint(String author, String name, Point[] points) {
+        this.author = author;
+        this.name = name;
+        this.points = new ArrayList<>(Arrays.asList(points));
     }
 
-    public Blueprint() {
-    }    
-    
-    public String getName() {
-        return name;
+    public Blueprint(String author, String name, List<Point> points) {
+        this.author = author;
+        this.name = name;
+        this.points = points;
     }
 
     public String getAuthor() {
         return author;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
     public List<Point> getPoints() {
         return points;
-    }
-    
-    public void addPoint(Point p){
-        this.points.add(p);
     }
 
     @Override
     public String toString() {
-        return "Blueprint{" + "author=" + author + ", name=" + name + '}';
+        return "Blueprint{" +
+                "author='" + author + '\'' +
+                ", name='" + name + '\'' +
+                ", points=" + points +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Blueprint blueprint = (Blueprint) o;
+        return Objects.equals(author, blueprint.author) &&
+                Objects.equals(name, blueprint.name) &&
+                Objects.equals(points, blueprint.points);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return Objects.hash(author, name, points);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Blueprint other = (Blueprint) obj;
-        if (!Objects.equals(this.author, other.author)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (this.points.size()!=other.points.size()){
-            return false;
-        }
-        for (int i=0;i<this.points.size();i++){
-            if (this.points.get(i)!=other.points.get(i)){
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    
-    
 }
