@@ -1,0 +1,40 @@
+package edu.eci.arsw.blueprints.services;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import edu.eci.arsw.blueprints.filter.BlueprintFilter;
+import edu.eci.arsw.blueprints.model.Blueprint;
+import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
+import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
+
+@Service
+public class BlueprintsServices {
+
+    @Autowired
+    BlueprintsPersistence bpp;
+
+    @Autowired
+    BlueprintFilter filter;
+
+    public void addNewBlueprint(Blueprint bp) {
+        try {
+            bpp.saveBlueprint(bp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Blueprint getBlueprint(String author, String name) throws BlueprintNotFoundException {
+        Blueprint bp = bpp.getBlueprint(author, name);
+        return filter.filter(bp);
+    }
+
+    public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
+        Set<Blueprint> blueprints = bpp.getBlueprintsByAuthor(author);
+        return blueprints.stream().map(filter::filter).collect(Collectors.toSet());
+    }
+}
