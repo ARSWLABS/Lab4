@@ -15,7 +15,7 @@ public class AppConfig {
     @Bean
     @Primary
     public BlueprintFilter blueprintFilter() {
-    
+        
         return new RedundancyFilter();
     
     }
