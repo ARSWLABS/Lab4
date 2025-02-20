@@ -1,4 +1,3 @@
-// filepath: /Users/juancancelado/Documents/GitHub/Lab4/SpringBoot_REST_API_Blueprints-master/src/main/java/edu/eci/arsw/blueprints/ui/Main.java
 package edu.eci.arsw.blueprints.ui;
 
 import org.springframework.context.ApplicationContext;
@@ -14,6 +13,7 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         BlueprintsServices blueprintsServices = context.getBean(BlueprintsServices.class);
 
+        // Crear y registrar nuevos planos
         Point[] pts1 = new Point[]{new Point(10, 10), new Point(20, 20)};
         Blueprint bp1 = new Blueprint("author1", "bp1", pts1);
         blueprintsServices.addNewBlueprint(bp1);
@@ -22,12 +22,14 @@ public class Main {
         Blueprint bp2 = new Blueprint("author1", "bp2", pts2);
         blueprintsServices.addNewBlueprint(bp2);
 
+        // Consultar planos por autor
         try {
             System.out.println("Blueprints by author1:");
             for (Blueprint bp : blueprintsServices.getBlueprintsByAuthor("author1")) {
                 System.out.println(bp);
             }
 
+            // Consultar un plano específico
             Blueprint retrievedBp = blueprintsServices.getBlueprint("author1", "bp1");
             System.out.println("Retrieved blueprint: " + retrievedBp);
         } catch (Exception e) {
