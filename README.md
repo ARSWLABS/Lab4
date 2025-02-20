@@ -1,5 +1,18 @@
 # 🚀 Laboratorio de Gestión de Planos Arquitectónicos 🏗️
 
+---
+## 🏁 Introducción
+
+Antes de desarrollar este laboratorio, se realizó una práctica introductoria sobre el manejo de Spring y la configuración basada en anotaciones. En esta práctica se exploraron conceptos clave como:
+
+- Creación de beans y su gestión con el contenedor de Spring.
+- Uso de la anotación `@Service` para definir servicios en la aplicación.
+- Inyección de dependencias mediante `@Autowired`.
+- Configuración de aplicaciones Spring con `@ComponentScan`.
+
+Esta práctica permitió familiarizarse con la estructura y configuración de Spring antes de aplicar estos conocimientos en la gestión de planos arquitectónicos.
+
+--- 
 🎯 **Objetivo:** Construir un modelo de clases para la capa lógica de una aplicación que permita gestionar planos arquitectónicos de una prestigiosa compañía de diseño. A continuación, se describen los pasos para configurar y ejecutar la aplicación utilizando inyección de dependencias con Spring Framework.
 
 ---
